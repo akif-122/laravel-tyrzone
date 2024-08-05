@@ -122,13 +122,13 @@ public function destroy(Request $request)
                        ->first();
 
     if (!$product) {
-        return redirect()->route('dashboard')->withErrors(['Product not found']);
+        return redirect()->route('adminPrdoucts')->withErrors(['Product not found']);
     }
 
     // Delete the product
     $product->delete();
 
-    return redirect()->route('dashboard')->with('success', 'Product deleted successfully');
+    return redirect()->route('adminProducts')->with('success', 'Product deleted successfully');
 }
 
 

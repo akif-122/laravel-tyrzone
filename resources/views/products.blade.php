@@ -40,7 +40,7 @@
                 @endforeach
             </div>
         @else
-            <p class="text-center">No products available</p>
+            <p class="text-center">No products availabe</p>
         @endif
     </div>
 
