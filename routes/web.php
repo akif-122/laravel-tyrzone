@@ -23,7 +23,7 @@ use Faker\Guesser\Name;
 
 
 Route::middleware(['auth'])->group(function (){
-   Route::get('/adminProducts',[ProductController::class,'showInfo']);
+   Route::get('/admin/products',[ProductController::class,'showInfo'])->name("adminProducts");
    Route::view('/admin/dashboard','admin.dashboard')->name('adminDashboard');
 });
 
@@ -97,7 +97,7 @@ Route::view("/tyre-pattren", "tyre-pattren")->name("tyre-pattren");
 // ADMIN ROUTES
 
 Route::view("admin/dashboard", "admin.dashboard")->name("adminDashboard");
-Route::view("admin/products", "admin.products")->name("adminProducts");
+// Route::view("admin/products", "admin.products")->name("adminProducts");
 Route::view("admin/add-product", "admin.add-product")->name("adminAddProduct");
 Route::view("admin/edit-product", "admin.edit-product")->name("adminEditProduct");
 Route::view("admin/manufacturers", "admin.manufacturers")->name("adminManufacturers");

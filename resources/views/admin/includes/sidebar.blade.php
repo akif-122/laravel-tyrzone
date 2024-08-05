@@ -14,7 +14,7 @@
                 <a class="active"  href="{{route("adminDashboard")}}"><i class="fa-solid fa-table-cells"></i> Dashboard</a>
             </li>
             <li>
-                <a class="" href="{{url("adminProducts")}}"><i class="fa-solid fa-box-archive"></i> Products</a>
+                <a class="" href="{{route("adminProducts")}}"><i class="fa-solid fa-box-archive"></i> Products</a>
             </li>
             <li>
                 <a href="{{route("adminManufacturers")}}"><i class="fa-solid fa-list"></i>

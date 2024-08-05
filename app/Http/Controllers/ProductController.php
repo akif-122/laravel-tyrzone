@@ -51,7 +51,7 @@ class ProductController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('adminProducts');
     }
     // public function showProducts(){
 
