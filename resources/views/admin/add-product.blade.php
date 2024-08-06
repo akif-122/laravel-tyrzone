@@ -77,9 +77,9 @@
                                         <div class="form-group">
                                             <label for="">Manufacture Name:</label>
                                             <select class="form-select" name="manu_name">
-                                                <option value="1" selected>Dunlop</option>
-                                                <option value="3">Anchee</option>
-                                                <option value="4">Antares</option>
+                                                <option value="Dunlop" selected>Dunlop</option>
+                                                <option value="Anchee">Anchee</option>
+                                                <option value="Antares">Antares</option>
                                             </select>
                                         </div>
                                     </div>
@@ -88,10 +88,10 @@
                                         <div class="form-group">
                                             <label for="">Tyre Pattern:</label>
                                             <select class="form-select" name="patteren_type">
-                                                <option value="8" selected>ECONO DRIVE</option>
-                                                <option value="9">FASTRESPONSE</option>
-                                                <option value="10">GRANDTREK AT20</option>
-                                                <option value="11">AC808</option>
+                                                <option value="ECONO DRIVE" selected>ECONO DRIVE</option>
+                                                <option value="FASTRESPONSE">FASTRESPONSE</option>
+                                                <option value="GRANDTREK AT20">GRANDTREK AT20</option>
+                                                <option value="AC808">AC808</option>
                                             </select>
                                         </div>
                                     </div>

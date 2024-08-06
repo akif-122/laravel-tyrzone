@@ -59,7 +59,7 @@
                                 <th>Wet Grip</th>
                                 <th>Road Noise</th>
                                 <th>Size</th>
-                                <th>Type</th>
+                                {{-- <th>Type</th> --}}
                                 <th>Season</th>
                                 <th>Budget Tyre</th>
                                 <th>Price</th>
@@ -73,19 +73,22 @@
                                     <td>{{ $product->name }}</td>
                                     <td><img src="{{ $product->image }}" alt="{{ $product->name }}" style="width: 100px; height: auto;"></td>
                                     <td>{{ $product->manufacturer_name }}</td>
-                                    <td>{{ $product->patteren_type }}</td>
-                                    <td>{{ $product->fuel }}</td>
+                                    <td>{{ $product->tyre_pattern }}</td>
+                                    <td>{{ $product->fuel_efficiency }}</td>
                                     <td>{{ $product->wet_grip }}</td>
                                     <td>{{ $product->road_noise }}</td>
                                     <td>{{ $product->size }}</td>
-                                    <td>{{ $product->type }}</td>
+                                    {{-- <td>{{ $product->type }}</td> --}}
                                     <td>{{ $product->season }}</td>
                                     <td>{{ $product->budget ? 'Yes' : 'No' }}</td>
                                     <td>${{ number_format($product->price, 2) }}</td>
                                     <td>
-                                        <a href="{{route("adminEditProduct")}}" class="btn btn-sm btn-info">
+                                    
+                                        <a href="{{ route('editProduct',['id' => $product->id]) }}" class="btn btn-primary">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
+                                        
+                                
                                         <form action="{{ route('products.destroy') }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')

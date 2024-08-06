@@ -64,35 +64,53 @@ class ProductController extends Controller
     // public function addPage(){
     //     return view('addProducts');
     // }
+    public function edit($id)
+{
+    $product = Product::findOrFail($id);
+
+    return view('admin.edit-product', compact('product'));
+}
 
     // UPDATE PRODUCT
     public function update(Request $request)
-{
-    // Find the product by name and manufacturer name
-    $product = Product::where('name', $request->input('original_name'))
-                       ->where('manufacturer_name', $request->input('original_manufacturer'))
-                       ->first();
+    {
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|url',
+            'manu_name' => 'required',
+            'patteren_type' => 'required',
+            'fuel' => 'required',
+            'wet_grip' => 'required',
+            'road_noise' => 'required',
+            'size' => 'required',
+            'type' => 'required',
+            'season' => 'required',
+            'price' => 'required|numeric',
+        ]);
 
-    if (!$product) {
-        return redirect()->back()->withErrors(['Product not found']);
+        $product = Product::find($request->input('id'));
+
+        if (!$product) {
+            return redirect()->route('adminProducts')->withErrors(['Product not found']);
+        }
+
+        $product->name = $request->input('name');
+        $product->image = $request->input('image');
+        $product->manufacturer_name = $request->input('manu_name');
+        $product->tyre_pattern = $request->input('patteren_type');
+        $product->fuel_efficiency = $request->input('fuel');
+        $product->wet_grip = $request->input('wet_grip');
+        $product->road_noise = $request->input('road_noise');
+        $product->size = $request->input('size');
+        $product->tyre_type = $request->input('type');
+        $product->season = $request->input('season');
+        $product->budget_tyres = $request->input('budget') ? 1 : 0;
+        $product->price = $request->input('price');
+
+        $product->save();
+
+        return redirect()->route('adminProducts')->with('success', 'Product updated successfully');
     }
-
-    // Update fields except name and manufacturer name
-    $product->image = $request->input('image', $product->image);
-    $product->patteren_type = $request->input('patteren_type', $product->patteren_type);
-    $product->fuel = $request->input('fuel', $product->fuel);
-    $product->wet_grip = $request->input('wet_grip', $product->wet_grip);
-    $product->road_noise = $request->input('road_noise', $product->road_noise);
-    $product->size = $request->input('size', $product->size);
-    $product->type = $request->input('type', $product->type);
-    $product->season = $request->input('season', $product->season);
-    $product->budget = $request->has('budget') ? 1 : 0;
-    $product->price = $request->input('price', $product->price);
-
-    $product->save();
-
-    return redirect()->route('products')->with('success', 'Product updated successfully');
-}
 public function showInfo()
 {
     // Fetch all products from the database

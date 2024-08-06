@@ -38,6 +38,9 @@ Route::get('/products',function(){
     return view('products');
 });
 Route::get('/products',[ProductController::class,'showInfoOnMain']);
+Route::post('/updateProduct', [ProductController::class, 'update'])->name('updateProduct');
+Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('editProduct');
+
 Route::get('/addManufacture',function(){
     return view('admin/add-manufacture');
 });
@@ -54,10 +57,7 @@ Route::get('/adminOrders',function(){
 });
 Route::get('/editUser',function(){
     return view('admin/edit-user');
-});
-Route::get('/editProduct',function(){
-    return view('admin/edit-product');
-});
+})->name('editUser');
 Route::get('/adminAddProduct',function(){
     return view('admin/add-product');
 })->name('adminAddProducts');

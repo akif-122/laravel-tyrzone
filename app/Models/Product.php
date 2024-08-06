@@ -21,7 +21,8 @@ class Product extends Model
         'tyre_type',
         'season',
         'price',
-        'budget_tyres'
+        'budget_tyres',
+        'image'
     ];
     
 }
