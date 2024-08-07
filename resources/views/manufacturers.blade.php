@@ -18,7 +18,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
     <!-- CUSTOM CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 
@@ -208,12 +208,12 @@
                             <div class="tyres-manu">
                                 <ul>
                                     <li>
-                                        <a href="{{route("manufacturers")}}"><strong>Accelera</strong> Tyres <i
+                                        <a href="{{ route('manufacturer', ['manufacturer' => 'Accelera']) }}"><strong>Accelera</strong> Tyres <i
                                                 class="fa-solid fa-angle-right"></i> </a>
                                     </li>
 
                                     <li>
-                                        <a href="{{route("manufacturers")}}"><strong>Anchee</strong> Tyres <i
+                                        <a href="{{ route('manufacturer', ['manufacturer' => 'Anchee']) }}"><strong>Anchee</strong> Tyres <i
                                                 class="fa-solid fa-angle-right"></i></a>
                                     </li>
 
@@ -298,8 +298,34 @@
 
                             <div class="row">
 
-                                <!-- tyre card -->
-                                <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
+                                <!-- Tyre Cards Container -->
+{{-- <div class="row"> --}}
+    @foreach ($products as $product)
+        <!-- Tyre Card -->
+        <div class="col-lg-4 col-md-6 col-sm-6 mb-3 px-2">
+            <div class="tyre-card">
+                <div class="card-body border-0">
+                    <!-- Tyre Image -->
+                    <div class="tyre-img border-bottom mx-auto w-100">
+                        <img src="{{$product->image}}" class="img-fluid" alt="{{ $product->name }}">
+                    </div>
+
+                    <!-- Tyre Details -->
+                    <div class="tyre-card-text">
+                        <a href="" class="card-title">{{ $product->manufacturer_name}} {{$product->tyre_pattern}}</a>
+                        <p>Price from <strong>£{{ number_format($product->price, 2) }}</strong></p>
+                        <div class="tyre-card-btn">
+                            <a href='' class="btn btn-primary">Find Out More <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+{{-- </div> --}}
+
+
+                                {{-- <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
                                     <div class="tyre-card">
                                         <div class="card-body border-0">
 
@@ -320,9 +346,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
+                                {{-- <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
                                     <div class="tyre-card">
                                         <div class="card-body border-0">
 
@@ -343,9 +369,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
+                                {{-- <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
                                     <div class="tyre-card">
                                         <div class="card-body border-0">
 
@@ -366,9 +392,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
+                                {{-- <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
                                     <div class="tyre-card">
                                         <div class="card-body border-0">
 
@@ -389,9 +415,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
+                                {{-- <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
                                     <div class="tyre-card">
                                         <div class="card-body border-0">
 
@@ -412,30 +438,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-3 col-lg-4 col-sm-6 mb-3 px-2">
-                                    <div class="tyre-card">
-                                        <div class="card-body border-0">
-
-                                            <div class="trye-img border-bottom mx-auto w-100">
-                                                <img src="assets/imgs/tyres/econodrive.jpg" width="100%"
-                                                    alt="">
-                                            </div>
-
-                                            <div class="tyre-card-text">
-                                                <a href="{{route("tyre-pattren")}}">Dunlop ECONO DRIVE</a>
-                                                <p>Price from <strong>£127.05</strong></p>
-                                                <div class="tyre-card-btn">
-                                                    <a href="{{route("tyre-pattren")}}">Find OUT MORE <i
-                                                            class="fa-solid fa-angle-right"></i></a>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> --}}
 
 
                             </div>

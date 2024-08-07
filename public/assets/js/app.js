@@ -131,11 +131,7 @@
         });
 
 
-        // GALLERY PAGE LIGHT BOX
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true
-        });
+      
 
 
         // BOOKING PAGE DATE PICKER SLIDE
@@ -155,4 +151,10 @@
                 }
 
             }
+        });
+
+          // GALLERY PAGE LIGHT BOX
+          lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
         });

@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProductController extends Controller
 {
     public function add(Request $request)
@@ -65,11 +67,11 @@ class ProductController extends Controller
     //     return view('addProducts');
     // }
     public function edit($id)
-{
-    $product = Product::findOrFail($id);
+    {
+        $product = Product::findOrFail($id);
 
-    return view('admin.edit-product', compact('product'));
-}
+        return view('admin.edit-product', compact('product'));
+    }
 
     // UPDATE PRODUCT
     public function update(Request $request)
@@ -111,44 +113,52 @@ class ProductController extends Controller
 
         return redirect()->route('adminProducts')->with('success', 'Product updated successfully');
     }
-public function showInfo()
-{
-    // Fetch all products from the database
-    $products = Product::all();
-    
-    // Pass products to the view
-    return view('admin.products', compact('products'));
-    return view('products', compact('products'));
-}
-public function showInfoOnMain()
-{
-    // Fetch all products from the database
-    $products = Product::all();
-    
-    // Pass products to the view
-    return view('products', compact('products'));
-}
-public function destroy(Request $request)
-{
-    // Retrieve name and manufacturer from the request
-    $name = $request->input('name');
-    $manufacturer_name = $request->input('manufacturer_name');
+    public function showInfo()
+    {
+        // Fetch all products from the database
+        $products = Product::all();
 
-    // Find the product by name and manufacturer name
-    $product = Product::where('name', $name)
-                       ->where('manufacturer_name', $manufacturer_name)
-                       ->first();
+        // Pass products to the view
+        return view('admin.products', compact('products'));
+    }
+    public function showInfoOnMain()
+    {
+        // Fetch all products from the database
+        $products = Product::all();
 
-    if (!$product) {
-        return redirect()->route('adminPrdoucts')->withErrors(['Product not found']);
+        // Pass products to the view
+        return view('products', compact('products'));
+    }
+    public function destroy(Request $request)
+    {
+        // Retrieve name and manufacturer from the request
+        $name = $request->input('name');
+        $manufacturer_name = $request->input('manufacturer_name');
+
+        // Find the product by name and manufacturer name
+        $product = Product::where('name', $name)
+            ->where('manufacturer_name', $manufacturer_name)
+            ->first();
+
+        if (!$product) {
+            return redirect()->route('adminPrdoucts')->withErrors(['Product not found']);
+        }
+
+        // Delete the product
+        $product->delete();
+
+        return redirect()->route('adminProducts')->with('success', 'Product deleted successfully');
     }
 
-    // Delete the product
-    $product->delete();
+    function render()
+    {
+        $products = Product::get();
+        return view('manufacturers', compact('products'));
+    }
+    public function category($manufacturer)
+    {
+        $products = Product::where('manufacturer_name', $manufacturer)->get();
 
-    return redirect()->route('adminProducts')->with('success', 'Product deleted successfully');
-}
-
-
-
+        return view('manufacturers',compact('products'));
+    }
 }

@@ -22,51 +22,54 @@ use App\Http\Controllers\DashboardController;
 use Faker\Guesser\Name;
 
 
-Route::middleware(['auth'])->group(function (){
-   Route::get('/admin/products',[ProductController::class,'showInfo'])->name("adminProducts");
-   Route::view('/admin/dashboard','admin.dashboard')->name('adminDashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/products', [ProductController::class, 'showInfo'])->name("adminProducts");
+    Route::view('/admin/dashboard', 'admin.dashboard')->name('adminDashboard');
 });
 
-Route::get('/change_password',function(){
+Route::get('/change_password', function () {
     return view('change_password');
 })->name("change-password");
-Route::get('/addByAdmin',[ProductController::class,'addPage'])->name('addByAdmin');
-Route::get('/admin',function(){
+Route::get('/addByAdmin', [ProductController::class, 'addPage'])->name('addByAdmin');
+Route::get('/admin', function () {
     return view('admin');
 });
-Route::get('/products',function(){
+Route::get('/products', function () {
     return view('products');
 });
-Route::get('/products',[ProductController::class,'showInfoOnMain']);
+Route::get('/products', [ProductController::class, 'showInfoOnMain']);
 Route::post('/updateProduct', [ProductController::class, 'update'])->name('updateProduct');
 Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('editProduct');
 
-Route::get('/addManufacture',function(){
+Route::get('/addManufacture', function () {
     return view('admin/add-manufacture');
 });
-Route::get('/tyrePattern',function(){
+Route::get('/tyrePattern', function () {
     return view('admin/tyre-patteren');
 });
-Route::get('/adminIndex',function(){
+Route::get('/adminIndex', function () {
     return view('admin/index');
 });
+
+Route::get("/manufacturers", [ProductController::class, 'render'])->name("manufacturers");
+Route::get("/manufacturers/{manufacturer}", [ProductController::class, 'category'])->name("manufacturer");
 Route::post('/dashboard', [AdminController::class, 'login'])->name('dashboard');
 Route::get('/logout', [AdminController::class, 'logout']);
-Route::get('/adminOrders',function(){
+Route::get('/adminOrders', function () {
     return view('admin/orders');
 });
-Route::get('/editUser',function(){
+Route::get('/editUser', function () {
     return view('admin/edit-user');
 })->name('editUser');
-Route::get('/adminAddProduct',function(){
+Route::get('/adminAddProduct', function () {
     return view('admin/add-product');
 })->name('adminAddProducts');
 Route::delete('/products/destroy', [ProductController::class, 'destroy'])->name('products.destroy');
-Route::post('/insert',[RegisterController::class,'insert']);
+Route::post('/insert', [RegisterController::class, 'insert']);
 Route::get('/render', [ProductController::class, 'render']);
-Route::post('/add',[ProductController::class,'add'])->name('add');
-Route::post('/update',[ProductController::class,'update'])->name('update');
-Route::post('/verify',[RegisterController::class,'verify']);
+Route::post('/add', [ProductController::class, 'add'])->name('add');
+Route::post('/update', [ProductController::class, 'update'])->name('update');
+Route::post('/verify', [RegisterController::class, 'verify']);
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 
 
@@ -85,7 +88,7 @@ Route::view("/contact", "contact")->name("contact");
 Route::view("/edit-profile", "edit-profile")->name("edit-profile");
 Route::view("/forget-password", "forget-password")->name("forget-password");
 Route::view("/gallery", "gallery")->name("gallery");
-Route::view("/manufacturers", "manufacturers")->name("manufacturers");
+// Route::view("/manufacturers", "manufacturers")->name("manufacturers");
 Route::view("/orders", "orders")->name("orders");
 Route::view("/search", "search")->name("search");
 Route::view("/services", "services")->name("services");
@@ -111,7 +114,7 @@ Route::view("admin/add-users", "admin.add-user")->name("adminAddUsers");
 Route::view("admin/edit-users", "admin.edit-user")->name("adminEditUsers");
 Route::view("admin/orders", "admin.orders")->name("adminOrder");
 
-Route::prefix("admin")->group(function(){
+Route::prefix("admin")->group(function () {
     Route::view("/", "admin.index");
     // Route::view("/products", "admin.products")->name("products");
     Route::view("/tyrePattern", "admin.tyre-Patteren")->name("tyrePattern");
