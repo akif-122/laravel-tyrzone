@@ -73,7 +73,8 @@
                         <p class="m-0  text-success"> </p>
 
                         <div class="form form-wrap sign-up-wrap ">
-                            <form action="php/add-manufacture.html" method="post">
+                            <form action="{{route('addManufacturer')}}" method="post">
+                                @csrf
                                 <div class="row">
 
                                     <div class="col-md-6 mb-4">
@@ -92,14 +93,14 @@
                                     <div class="col-md-12 mb-4">
                                         <div class="form-group">
                                             <label for="">Excerp:</label>
-                                            <input type="text" name="excerp" maxlength="100" class="form-control"
+                                            <input type="text" name="excerpt" maxlength="100" class="form-control"
                                                 placeholder="name">
                                         </div>
                                     </div>
                                     <div class="col-12 mb-4">
                                         <div class="form-group">
                                             <label for="">Description</label>
-                                            <textarea name="desc" id="editor" placeholder="Descriptions"></textarea>
+                                            <textarea id="editor" name="desc" placeholder="Descriptions"></textarea>
                                         </div>
                                     </div>
 

@@ -19,7 +19,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
     <!-- CUSTOM CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../admin/assets/css/style.css">
 
     <style>
         .cke_notification_warning {
@@ -72,14 +72,15 @@
 
 
 
-                            <form action="php/update-manufacturer.html" method="post">
+                            <form action="{{route('update_manufacturer')}}" method="post">
+                                @csrf
                                 <div class="row">
 
                                     <div class="col-md-6 mb-4">
                                         <div class="form-group">
                                             <label for="">Name:</label>
-                                            <input type="hidden" name="id" value="1" />
-                                            <input type="text" name="name" value="Dunlop" class="form-control"
+                                            <input type="hidden" name="id" value="{{$product->id}}" />
+                                            <input type="text" name="name" value="{{$product->name}}" class="form-control"
                                                 placeholder="name">
                                         </div>
                                     </div>
@@ -87,21 +88,21 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-group">
                                             <label for="">Image:</label>
-                                            <input type="text" value="0" name="image" class="form-control"
+                                            <input type="text" value="{{$product->image}}" name="image" class="form-control"
                                                 placeholder="Imge Url">
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-4">
                                         <div class="form-group">
                                             <label for="">Excerp:</label>
-                                            <input type="text" name="excerp" value="" maxlength="100"
+                                            <input type="text" name="excerpt" value="{{$product->excerpt}}" maxlength="100"
                                                 class="form-control" placeholder="name">
                                         </div>
                                     </div>
                                     <div class="col-12 mb-4">
                                         <div class="form-group">
                                             <label for="">Description</label>
-                                            <textarea name="desc" id="editor" placeholder="Descriptions">
+                                            <textarea name="desc" id="editor" value="{{$product->description}}" placeholder="Descriptions">
                                             Description                                            
                                             </textarea>
                                         </div>
@@ -111,7 +112,7 @@
 
 
                                     <div class="col-12 text-center">
-                                        <button class="btn btn-primary ">Add Manufacture</button>
+                                        <button class="btn btn-primary ">Update Manufacturer</button>
                                     </div>
 
                                 </div>
@@ -139,7 +140,7 @@
     <!-- BOOTSTRAP 5 JS CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assets/ckeditor/ckeditor.js"></script>
+    <script src="../admin/assets/ckeditor/ckeditor.js"></script>
 
     <script>
         CKEDITOR.replace("desc");

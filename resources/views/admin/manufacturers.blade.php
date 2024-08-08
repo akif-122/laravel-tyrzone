@@ -19,7 +19,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
     <!-- CUSTOM CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../admin/assets/css/style.css">
 
 </head>
 
@@ -72,54 +72,36 @@
                             </thead>
 
                             <tbody>
+                                @if (@isset($record))
+                                @foreach ($record as $record)
+                                    
                                 <tr>
-                                    <td>Dunlop</td>
-                                    <td>Image</td>
-                                    <td>...</td>
-                                    <td>2024-07-11 08:17:07</td>
+                                    <td>{{$record->name}}</td>
+                                    <td>{{$record->image}}</td>
+                                    <td>{{$record->description}}</td>
+                                    <td>{{$record->created_at}}</td>
 
 
                                     <td>
-                                        <a href="{{route("adminEditManufacturers")}}" class="btn btn-sm btn-info"><i
-                                                class="fa-solid fa-pen"></i></a>
+                                        <a href="{{ route('editManufacturer',['id' => $record->id]) }}" class="btn btn-primary">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </a>
 
-                                        <a href="php/delete-manufacture.html?id=1" class="btn btn-sm btn-danger"><i
-                                                class="fa-solid fa-trash-can"></i></a>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Anchee</td>
-                                    <td>Image</td>
-                                    <td>...</td>
-                                    <td>2024-07-11 08:17:56</td>
-
-
-                                    <td>
-                                        <a href="{{route("adminEditManufacturers")}}" class="btn btn-sm btn-info"><i
-                                                class="fa-solid fa-pen"></i></a>
-
-                                        <a href="php/delete-manufacture.html?id=3" class="btn btn-sm btn-danger"><i
-                                                class="fa-solid fa-trash-can"></i></a>
+                                                <form action="{{ route('delete_Manufacturer') }}" method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="name" value="{{ $record->name }}">
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this manufacturer?')">Delete</button>
+                                                </form>
+                                                
 
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Antares</td>
-                                    <td>Image</td>
-                                    <td>...</td>
-                                    <td>2024-07-11 08:18:08</td>
-
-
-                                    <td>
-                                        <a href="{{route("adminEditManufacturers")}}" class="btn btn-sm btn-info"><i
-                                                class="fa-solid fa-pen"></i></a>
-
-                                        <a href="php/delete-manufacture.html?id=4" class="btn btn-sm btn-danger"><i
-                                                class="fa-solid fa-trash-can"></i></a>
-
-                                    </td>
-                                </tr>
+                                @endforeach
+                                    
+                                @else
+                                    <p>No Manufacturer details available</p>
+                                @endif
                             </tbody>
                         </table>
                     </div>

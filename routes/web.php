@@ -18,6 +18,7 @@ use App\Http\Middleware;
 */
 // routes/web.php
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\DashboardController;
 use Faker\Guesser\Name;
 
@@ -51,8 +52,13 @@ Route::get('/adminIndex', function () {
     return view('admin/index');
 });
 
-Route::get("/manufacturers", [ProductController::class, 'render'])->name("manufacturers");
+Route::get("/manufacturersHome", [ProductController::class, 'render'])->name("manufacturers");
 Route::get("/manufacturers/{manufacturer}", [ProductController::class, 'category'])->name("manufacturer");
+Route::post("/addManufacturer", [ManufacturerController::class, 'addManufacturer'])->name("addManufacturer");
+Route::get("/manufacturers", [ManufacturerController::class, 'index'])->name('adminManufacturers');
+Route::delete('/manufacturers/delete', [ManufacturerController::class, 'destroy'])->name('delete_Manufacturer');
+Route::get('/editManufacturer/{id}', [ManufacturerController::class, 'edit'])->name('editManufacturer');
+Route::post('/update_manufacturer', [ManufacturerController::class, 'update'])->name('update_manufacturer');
 Route::post('/dashboard', [AdminController::class, 'login'])->name('dashboard');
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::get('/adminOrders', function () {
@@ -103,7 +109,7 @@ Route::view("admin/dashboard", "admin.dashboard")->name("adminDashboard");
 // Route::view("admin/products", "admin.products")->name("adminProducts");
 Route::view("admin/add-product", "admin.add-product")->name("adminAddProduct");
 Route::view("admin/edit-product", "admin.edit-product")->name("adminEditProduct");
-Route::view("admin/manufacturers", "admin.manufacturers")->name("adminManufacturers");
+// Route::view("admin/manufacturers", "admin.manufacturers")->name("adminManufacturers");
 Route::view("admin/add-manufacturer", "admin.add-manufacture")->name("adminAddManufacturers");
 Route::view("admin/edit-manufacturer", "admin.edit-manufacture")->name("adminEditManufacturers");
 Route::view("admin/tyre-pattren", "admin.tyre-patteren")->name("adminTyrepattren");

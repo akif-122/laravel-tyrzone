@@ -155,7 +155,7 @@ class ProductController extends Controller
         $products = Product::get();
         return view('manufacturers', compact('products'));
     }
-    public function category($manufacturer)
+    public function category($manufacturer = "")
     {
         $products = Product::where('manufacturer_name', $manufacturer)->get();
 
